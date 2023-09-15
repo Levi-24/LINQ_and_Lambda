@@ -17,14 +17,14 @@ namespace LINQ_and_Lambda
         {
             var items = new List<Data>
             {
-            new Data { X = 1, Y = 2 },
+            new Data { X = 9, Y = 2 },
             new Data { X = 3, Y = 4 },
             new Data { X = 5, Y = 6 },
             new Data { X = 7, Y = 8 },
-            new Data { X = 9, Y = 10 },
+            new Data { X = 1, Y = 10 },
             };
 
-            //Select
+            //Selection
             //Query syntax
             //var results = from item in items select item.X;
 
@@ -54,7 +54,18 @@ namespace LINQ_and_Lambda
             //Lambda syntax
             var smlresult = items.Where(item => item.X < 6).Select(item => item.X);
 
+            //Order by
+            //Query syntax
+            //items orderby item.X descending
+            //var orderresult = from item in items orderby item.X ascending select item.X;
+
+            //Lambda syntax
+            //items.OrderByDescending(item => item.X)
+            var orderresult = items.OrderBy(item => item.X).Select(item => item.X);
+
+
             //Output
+            //Selection
             foreach (var item in results)
             {
                 Console.WriteLine(item);
@@ -62,6 +73,7 @@ namespace LINQ_and_Lambda
 
             Console.WriteLine();
 
+            //Projection
             foreach (var item in dblresults)
             {
                 Console.WriteLine($"{item.X2} - {item.Y2}");
@@ -69,12 +81,19 @@ namespace LINQ_and_Lambda
 
             Console.WriteLine();
 
+            //Filtering
             foreach (var item in smlresult)
             {
                 Console.WriteLine(item);
             }
 
             Console.WriteLine();
+
+            //Order by
+            foreach (var item in orderresult)
+            {
+                Console.WriteLine(item);
+            }
 
             Console.ReadKey();
         }
